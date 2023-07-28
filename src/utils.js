@@ -1,7 +1,14 @@
-import {watch} from 'vue'
+import { watch } from 'vue';
 
 const u = navigator.userAgent;
-  const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+const Agents = [
+  'Android',
+  'iPhone',
+  'SymbianOS',
+  'Windows Phone',
+  'iPad',
+  'iPod',
+];
 let mobile = false;
 for (let v = 0; v < Agents.length; v++) {
   if (u.indexOf(Agents[v]) > -1) {
@@ -23,8 +30,8 @@ export const Os = {
   getOsType() {
     const agent = navigator.userAgent.toLowerCase();
     let osType = '';
-      let index = '';
-      let version = '';
+    let index = '';
+    let version = '';
     if (/android/i.test(navigator.userAgent)) {
       index = agent.indexOf('android');
       version = agent.substr(index + 8, 3);
@@ -52,7 +59,8 @@ export const Os = {
   },
 };
 
-export const waitVal = (v, fn) => new Promise((res) => {
+export const waitVal = (v, fn) =>
+  new Promise((res) => {
     const unwatch = watch(v, (...args) => {
       if (fn(...args)) {
         unwatch();

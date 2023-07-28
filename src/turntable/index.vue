@@ -145,6 +145,9 @@ defineExpose({
 export const getDegKey = Symbol('getDeg') as InjectionKey<
   (cb: (val) => void) => void
 >;
+export default {
+  name: 'Turntable',
+};
 </script>
 <style lang="scss" scoped>
 @keyframes turntable-rotate {

@@ -24,6 +24,7 @@
 </template>
 <script>
 export default {
+  name: 'Chat',
   props: {
     src: {
       type: String,

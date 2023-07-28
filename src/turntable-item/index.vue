@@ -12,3 +12,8 @@ getDeg((val) => {
   deg.value = val;
 });
 </script>
+<script>
+export default {
+  name: 'TurntableItem',
+};
+</script>

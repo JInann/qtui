@@ -108,6 +108,10 @@ export function openPopup(name, ...args) {
     return fn(...args);
   }
 }
+
+export default {
+  name: 'Popup',
+};
 </script>
 
 <style lang="scss" scoped>

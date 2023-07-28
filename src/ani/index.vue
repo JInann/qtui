@@ -47,6 +47,9 @@ function initAni(
     });
   });
 }
+export default {
+  name: 'Ani',
+};
 </script>
 <script lang="ts" setup>
 const props = withDefaults(defineProps<svgaProps>(), {
