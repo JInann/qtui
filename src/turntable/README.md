@@ -37,8 +37,6 @@ Vue.use(turntableItem);
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import turntable from '../index.vue';
-import turntableItem from '../../turntable-item/index.vue';
 const turntable_config = ref<any[]>(
   Array.from({ length: 8 }).map((v, i) => ({
     name: '下标' + i,
