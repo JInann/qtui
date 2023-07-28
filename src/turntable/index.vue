@@ -6,24 +6,23 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Os, waitVal } from '../utils';
+import { waitVal } from '../utils';
 import { InjectionKey, ref, computed, watch, provide, onMounted } from 'vue';
 
 const turntableEl = ref<HTMLDivElement>();
 const emits = defineEmits(['over']);
 const props = withDefaults(
   defineProps<{
-    during: number;
-    size: number;
-    rotateWhenReady: boolean;
+    during?: number;
+    rotateWhenReady?: boolean;
+    offset?: number;
   }>(),
   {
+    offset: 0,
     during: 1500,
-    size: 7,
     rotateWhenReady: false,
   },
 );
-const rotateWhenReady = ref(props.rotateWhenReady);
 const duringStyleVal = computed(() => props.during / 1000 + 's');
 const drawing = ref(false);
 function onOver() {
@@ -41,20 +40,17 @@ const getDeg = (matrixStr: string) => {
 };
 const useTurntable = (
   options = {
-    num: 8,
-    offset: 0,
-    rotateWhenReady: false,
-    time: 1500,
     el: () => document.createElement('div'),
-    onOver: new Function(),
   },
 ) => {
   const aniActive = ref(false);
-  const aniReady = ref(true);
+  const aniReady = ref(false);
+  onMounted(() => {
+    aniReady.value = true;
+  });
   const elClass = computed(() => ({
     'turntable-active': aniActive.value,
-    'turntable-ready':
-      options.rotateWhenReady == false ? false : aniReady.value,
+    'turntable-ready': props.rotateWhenReady == false ? false : aniReady.value,
   }));
   const fromDeg = ref('0deg');
   const endDeg = ref('0deg');
@@ -78,44 +74,43 @@ const useTurntable = (
       running.value = true;
       fromDeg.value =
         (getDeg(window.getComputedStyle(options.el()).transform) % 360) + 'deg';
-      endDeg.value =
-        720 - (360 / options.num) * endIdx - options.offset + 'deg';
+      endDeg.value = 720 - (360 / size.value) * endIdx - props.offset + 'deg';
       aniReady.value = false;
       aniActive.value = true;
       setTimeout(() => {
         running.value = false;
-        options.onOver();
+        onOver();
         aniActive.value = false;
         aniReady.value = true;
-      }, options.time);
+      }, props.during);
     },
-    itemDeg: ref(
-      Array.from({ length: options.num }).map(
-        (v, i) => (360 / options.num) * i - options.offset + 'deg',
-      ),
-    ),
     elClass,
   };
 };
 
 const turntable = useTurntable({
-  num: props.size || 7,
-  offset: 0,
+  // num: props.size,
   el() {
     return turntableEl.value || document.createElement('div');
   },
-  onOver,
-  rotateWhenReady: !Os.ios,
-  time: props.during,
 });
-
-let i = 0;
-provide(getDegKey, () => {
-  try {
-    return turntable.itemDeg.value[i];
-  } finally {
-    i++;
-  }
+const size = ref(0);
+const itemDegArr = ref<string[]>([]);
+watch(
+  size,
+  (newV) => {
+    Array.from({ length: newV }).forEach((v, i) => {
+      let val = (360 / newV) * i - props.offset + 'deg';
+      itemDegArr.value[i] = val;
+      cb_list[i](val);
+    });
+  },
+  { immediate: true },
+);
+const cb_list: any[] = [];
+provide(getDegKey, (cb) => {
+  size.value++;
+  cb_list.push(cb);
 });
 onMounted(() => {
   turntable.init();
@@ -129,7 +124,9 @@ defineExpose({
 });
 </script>
 <script lang="ts">
-export const getDegKey = Symbol('getDeg') as InjectionKey<() => string>;
+export const getDegKey = Symbol('getDeg') as InjectionKey<
+  (cb: (val) => void) => void
+>;
 </script>
 <style lang="scss" scoped>
 @keyframes turntable-rotate {

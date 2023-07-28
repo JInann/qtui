@@ -1,13 +1,14 @@
 <template>
-  <div
-    class="turntable-item"
-    :style="{ transform: 'rotate(' + getDeg() + ')' }"
-  >
+  <div class="turntable-item" :style="{ transform: 'rotate(' + deg + ')' }">
     <slot></slot>
   </div>
 </template>
 <script lang="ts" setup>
 import { getDegKey } from '../turntable/index.vue';
-import { inject } from 'vue';
-const getDeg = inject(getDegKey, () => '');
+import { inject, ref } from 'vue';
+const getDeg = inject(getDegKey, () => void 0);
+const deg = ref('0deg');
+getDeg((val) => {
+  deg.value = val;
+});
 </script>

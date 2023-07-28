@@ -8,9 +8,10 @@ turntable是一个转盘组件
 
 ```js
 import Vue from 'vue';
-import { popup } from 'qtui';
+import { turntable,turntableItem } from 'qtui';
 
-Vue.use(popup);
+Vue.use(turntable);
+Vue.use(turntableItem);
 ```
 
 ## 代码演示
@@ -20,7 +21,7 @@ Vue.use(popup);
 ```html
  <template>
   <demo-block title="基础用法">
-    <turntable ref="turntableVm" :size="7" :during="1500">
+    <turntable ref="turntableVm" >
       <turntable-item v-for="(item, i) in turntable_config" :key="i" :idx="i">
         <div class="name">{{ item.name }}</div>
         <img :src="item.icon" alt="" class="icon" />
@@ -34,7 +35,7 @@ import { ref } from 'vue';
 import turntable from '../index.vue';
 import turntableItem from '../../turntable-item/index.vue';
 const turntable_config = ref<any[]>(
-  Array.from({ length: 7 }).fill({
+  Array.from({ length: 3 }).fill({
     name: '礼物',
     icon: 'https://h5.carryu.com.cn/wcfe__test/mass2/assets/b1-354ce1e4.png',
   }),

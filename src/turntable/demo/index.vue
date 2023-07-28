@@ -1,14 +1,16 @@
 <template>
   <demo-block title="基础用法">
     <div class="my-turntable">
-      <turntable ref="turntableVm" :size="7" :during="1500">
+      <turntable ref="turntableVm" :during="3000">
         <turntable-item v-for="(item, i) in turntable_config" :key="i" :idx="i">
           <div class="name">{{ item.name }}</div>
           <img :src="item.icon" alt="" class="icon" />
         </turntable-item>
       </turntable>
     </div>
-    <div class="start-btn" @click="handleClick">点击抽奖</div>
+    <div class="start-btn" @click="handleClick">
+      点击抽奖（结果下标：{{ resultIdx }}）
+    </div>
   </demo-block>
 </template>
 
@@ -17,15 +19,23 @@ import { ref } from 'vue';
 import turntable from '../index.vue';
 import turntableItem from '../../turntable-item/index.vue';
 const turntable_config = ref<any[]>(
-  Array.from({ length: 7 }).map((v, i) => ({
+  Array.from({ length: 8 }).map((v, i) => ({
     name: '下标' + i,
     icon: 'https://h5.carryu.com.cn/wcfe__test/mass2/assets/b1-354ce1e4.png',
   })),
 );
+setTimeout(() => {
+  turntable_config.value = Array.from({ length: 5 }).map((v, i) => ({
+    name: '下标' + i,
+    icon: 'https://h5.carryu.com.cn/wcfe__test/mass2/assets/b1-354ce1e4.png',
+  }));
+}, 5000);
 const turntableVm = ref<InstanceType<typeof turntable>>();
+const resultIdx = ref(0);
 function handleClick() {
   if (turntableVm.value) {
-    turntableVm.value.draw(3);
+    resultIdx.value = ~~(Math.random() * turntable_config.value.length);
+    turntableVm.value.draw(resultIdx.value);
   }
 }
 </script>
