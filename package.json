@@ -28,13 +28,15 @@
     "*.{ts,tsx,js,vue}": "eslint --fix"
   },
   "peerDependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "svgaplayerweb":"^2.3.2"
   },
   "devDependencies": {
     "@vant/cli": "^6.0.0",
     "eslint-plugin-prettier": "^5.0.0-alpha.1",
     "prettier": "^3.0.0",
     "sass": "^1.49.7",
+    "svgaplayerweb": "^2.3.2",
     "vue": "^3.3.4"
   },
   "prettier": {

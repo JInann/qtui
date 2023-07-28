@@ -6623,6 +6623,11 @@ svg-tags@^1.0.0:
   resolved "https://npm.tt.cn/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=
 
+svgaplayerweb@^2.3.2:
+  version "2.3.2"
+  resolved "https://npm.tt.cn/svgaplayerweb/-/svgaplayerweb-2.3.2.tgz#15595b8dcc20cf4de4adc3103970b7cf5ae19a84"
+  integrity sha1-FVlbjcwgz03krcMQOXC3z1rhmoQ=
+
 symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://npm.tt.cn/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"

@@ -64,6 +64,10 @@ export default {
             path: 'chat',
             title: '气泡',
           },
+          {
+            path: 'ani',
+            title: 'svga动画',
+          },
         ],
       },
     ],
