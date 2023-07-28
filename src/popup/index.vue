@@ -20,31 +20,31 @@
 </template>
 
 <script setup>
-import { onUnmounted, ref, watch } from "vue";
+import { onUnmounted, ref, watch } from 'vue';
 
 const props = defineProps({
   modelValue: {
-    type:Boolean,
-    default:false,
-    require:true
+    type: Boolean,
+    default: false,
+    require: true,
   },
   clickMaskClose: {
-    type:Boolean,
-    default:true
+    type: Boolean,
+    default: true,
   },
   type: {
-    type:String,
-    default:'center'
+    type: String,
+    default: 'center',
   },
   align: {
-    type:String,
-    default:'center'
+    type: String,
+    default: 'center',
   },
-})
-const emit = defineEmits(["update:modelValue"]);
+});
+const emit = defineEmits(['update:modelValue']);
 
 const closePopup = () => {
-  emit("update:modelValue", false);
+  emit('update:modelValue', false);
 };
 
 const curZIndex = ref(0);
@@ -68,7 +68,7 @@ watch(
     } else {
       oldV !== undefined && close();
     }
-  }
+  },
 );
 </script>
 <script>
@@ -80,10 +80,10 @@ export function getIndex() {
 }
 export function open() {
   setTimeout(() => {
-    const container = document.querySelector(".app");
+    const container = document.querySelector('.app');
     if (container) {
-      container.style.height = "100vh";
-      container.style.overflow = "hidden";
+      container.style.height = '100vh';
+      container.style.overflow = 'hidden';
       openCount++;
     }
   }, 0);
@@ -91,10 +91,10 @@ export function open() {
 export function close() {
   openCount--;
   if (openCount <= 0) {
-    const container = document.querySelector(".app");
+    const container = document.querySelector('.app');
     if (container) {
-      container.style.height = "";
-      container.style.overflow = "";
+      container.style.height = '';
+      container.style.overflow = '';
     }
   }
 }

@@ -11,7 +11,7 @@ export default {
   site: {
     title: 'qtui',
     logo: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
-    headHtml:`<script>
+    headHtml: `<script>
     !(function (doc, win) {
       var docEl = doc.documentElement;
       var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
@@ -53,12 +53,12 @@ export default {
         title: '基础组件',
         items: [
           {
-            path: 'demo-button',
-            title: 'DemoButton 按钮',
-          },
-          {
             path: 'popup',
             title: '弹窗',
+          },
+          {
+            path: 'turntable',
+            title: '转盘',
           },
         ],
       },
