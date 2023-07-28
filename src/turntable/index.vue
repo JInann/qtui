@@ -1,13 +1,21 @@
 <template>
   <div ref="turntableEl" class="turntable" :class="turntable.elClass.value">
     <div class="turntable-ls">
-      <slot></slot>
+      <slot v-if="showChild"></slot>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { waitVal } from '../utils';
-import { InjectionKey, ref, computed, watch, provide, onMounted } from 'vue';
+import {
+  InjectionKey,
+  ref,
+  computed,
+  watch,
+  provide,
+  onMounted,
+  nextTick,
+} from 'vue';
 
 const turntableEl = ref<HTMLDivElement>();
 const emits = defineEmits(['over']);
@@ -115,11 +123,21 @@ provide(getDegKey, (cb) => {
 onMounted(() => {
   turntable.init();
 });
+const showChild = ref(true);
+
 defineExpose({
   draw(idx: number) {
     drawing.value = true;
     turntable.draw(idx);
     return waitVal(drawing, (newV: boolean) => newV == false);
+  },
+  updateSize() {
+    showChild.value = false;
+    size.value = 0;
+    cb_list.splice(0, cb_list.length);
+    nextTick(() => {
+      showChild.value = true;
+    });
   },
 });
 </script>
