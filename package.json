@@ -1,5 +1,5 @@
 {
-  "name": "qtui",
+  "name": "@xh.j/qtui",
   "version": "1.0.0",
   "description": "",
   "main": "lib/qtui.js",

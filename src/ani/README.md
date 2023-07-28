@@ -67,7 +67,7 @@ this.$refs.aniVm.player.value
 ```html
 <template>
    <ani
-      src="http://test-qtzb-upload.tt.cn/qtzb/cloud/resources/1615863486779.6.svga"
+      src="https://jyb-site.oss-cn-hongkong.aliyuncs.com/1615863486779.6.svga"
     />
 </template>
 

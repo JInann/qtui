@@ -1,7 +1,7 @@
 <template>
   <demo-block title="基础用法">
     <ani
-      src="http://test-qtzb-upload.tt.cn/qtzb/cloud/resources/1615863486779.6.svga"
+      src="https://jyb-site.oss-cn-hongkong.aliyuncs.com/1615863486779.6.svga"
     />
   </demo-block>
 </template>
