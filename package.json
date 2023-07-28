@@ -32,14 +32,10 @@
   },
   "devDependencies": {
     "@vant/cli": "^6.0.0",
-    "vue": "^3.3.4",
-    "sass": "^1.49.7"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@vant"
-    ]
+    "eslint-plugin-prettier": "^5.0.0-alpha.1",
+    "prettier": "^3.0.0",
+    "sass": "^1.49.7",
+    "vue": "^3.3.4"
   },
   "prettier": {
     "singleQuote": true
