@@ -4,7 +4,7 @@
       v-if="modelValue"
       class="popup"
       :class="[type]"
-      :style="{ 'z-index': ZIndex }"
+      :style="{ 'z-index': curZIndex }"
     >
       <div
         class="popup-mask"
@@ -21,8 +21,6 @@
 
 <script setup>
 import { onUnmounted, ref, watch } from "vue";
-import { getIndex, open, close as MClose } from "./popupManager";
-
 
 const props = defineProps({
   modelValue: {
@@ -45,20 +43,20 @@ const props = defineProps({
 })
 const emit = defineEmits(["update:modelValue"]);
 
-const close = () => {
+const closePopup = () => {
   emit("update:modelValue", false);
 };
 
-const ZIndex = ref(0);
+const curZIndex = ref(0);
 const handleMaskClick = () => {
   if (props.clickMaskClose) {
-    close();
+    closePopup();
   }
 };
 
 onUnmounted(() => {
   if (props.modelValue) {
-    MClose();
+    close();
   }
 });
 watch(
@@ -66,12 +64,50 @@ watch(
   (newV, oldV) => {
     if (newV) {
       open();
-      ZIndex.value = getIndex();
+      curZIndex.value = getIndex();
     } else {
-      oldV !== undefined && MClose();
+      oldV !== undefined && close();
     }
   }
 );
+</script>
+<script>
+let openCount = 0;
+let ZIndex = 10;
+
+export function getIndex() {
+  return ZIndex++;
+}
+export function open() {
+  setTimeout(() => {
+    const container = document.querySelector(".app");
+    if (container) {
+      container.style.height = "100vh";
+      container.style.overflow = "hidden";
+      openCount++;
+    }
+  }, 0);
+}
+export function close() {
+  openCount--;
+  if (openCount <= 0) {
+    const container = document.querySelector(".app");
+    if (container) {
+      container.style.height = "";
+      container.style.overflow = "";
+    }
+  }
+}
+export const popupPool = {};
+export function registerPopup(name, openFn) {
+  popupPool[name] = openFn;
+}
+export function openPopup(name, ...args) {
+  const fn = popupPool[name];
+  if (fn) {
+    return fn(...args);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

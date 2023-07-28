@@ -5,17 +5,32 @@
         这是内容
       </div>
     </popup>
-    <span @click="openClick">打开</span>
+    <popup v-model="p2" type="primary">
+      <div class="my-popup-content">
+        这是内容2
+      </div>
+    </popup>
+    <div @click="openClick">打开</div>
+    <div @click="openClick2">打开方式2</div>
   </demo-block>
 </template>
 
 <script setup>
-import popup from '../index.vue';
+import popup,{registerPopup,openPopup}  from '../index.vue';
 import {ref} from 'vue'
 
 const p1 = ref(false)
+const p2 = ref(false)
+
+registerPopup('p2',()=>{
+  p2.value=true
+})
+
 function openClick(){
   p1.value = true
+}
+function openClick2(){
+  openPopup('p2')
 }
 </script>
 <style lang="scss" scoped>

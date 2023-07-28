@@ -52,8 +52,8 @@ Vue.use(popup);
 | 参数          | 说明     | 类型     | 默认值    |
 | ------------- | -------- | -------- | --------- |
 | modelValue          | 进入方向 | _bool_ | `false` |
-| type          | 进入方向 | _center/letf_top/right/bottom_ | `center` |
-| align | 对齐方式 | _center/letf_top/right/bottom_ | `center`     |
+| type          | 进入方向 | _center/letf/top/right/bottom_ | `center` |
+| align | 对齐方式 | _center/letf/top/right/bottom_ | `center`     |
 | clickMaskClose | 点击蒙层关闭 | _bool_ | true        |
 
 ### Events
