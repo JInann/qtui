@@ -47,27 +47,6 @@ function initAni(
     });
   });
 }
-export const playAni = (
-  el: HTMLDivElement | HTMLCanvasElement,
-  srcOrOptions: svgaProps | string,
-  eventCallBack?: (eventName?: string, eventDetail?: unknown) => void,
-) => {
-  const player = new SVGA.Player(el);
-  const option: svgaProps = {
-    src: '',
-    autoplay: true,
-    loops: 1,
-  };
-  if (typeof srcOrOptions == 'string') {
-    option.src = srcOrOptions;
-  } else {
-    Object.keys(srcOrOptions).forEach((k) => {
-      (option as any)[k] = (srcOrOptions as any)[k];
-    });
-  }
-  initAni(player, option, eventCallBack);
-  return player;
-};
 </script>
 <script lang="ts" setup>
 const props = withDefaults(defineProps<svgaProps>(), {
