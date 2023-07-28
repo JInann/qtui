@@ -60,6 +60,10 @@ export default {
             path: 'turntable',
             title: '转盘',
           },
+          {
+            path: 'chat',
+            title: '气泡',
+          },
         ],
       },
     ],
