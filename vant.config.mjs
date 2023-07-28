@@ -7,7 +7,7 @@ export default {
     site: {
       publicPath: '/qtui/',
     },
-    packageManager:'pnpm',
+    packageManager: 'pnpm',
   },
   site: {
     title: 'qtui',
