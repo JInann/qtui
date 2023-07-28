@@ -30,7 +30,7 @@ export const Os = {
   getOsType() {
     const agent = navigator.userAgent.toLowerCase();
     let osType = '';
-    let index = '';
+    let index: any = '';
     let version = '';
     if (/android/i.test(navigator.userAgent)) {
       index = agent.indexOf('android');
@@ -59,7 +59,7 @@ export const Os = {
   },
 };
 
-export const waitVal = (v, fn) =>
+export const waitVal = (v: any, fn: any) =>
   new Promise((res) => {
     const unwatch = watch(v, (...args) => {
       if (fn(...args)) {
