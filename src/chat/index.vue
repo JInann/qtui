@@ -3,7 +3,7 @@
     <div
       class="pic9-bg"
       :style="{
-        'border-image': src,
+        'border-image': 'url(' + src + ')',
         'border-width': '0 ' + borderWidth,
         '--scale': parseFloat(height) / 0.9,
         '--bw': borderWidth,
