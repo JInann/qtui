@@ -10,8 +10,7 @@ turntable是一个转盘组件
 import Vue from 'vue';
 import { chat } from 'qtui';
 
-Vue.use(turntable);
-Vue.use(turntableItem);
+Vue.use(chat);
 ```
 
 ## 代码演示
