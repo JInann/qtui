@@ -8,7 +8,7 @@ turntable是一个转盘组件
 
 ```js
 import Vue from 'vue';
-import { turntable,turntableItem } from 'qtui';
+import { chat } from 'qtui';
 
 Vue.use(turntable);
 Vue.use(turntableItem);
