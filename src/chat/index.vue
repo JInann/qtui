@@ -5,8 +5,6 @@
       :style="{
         'border-image': 'url(' + src + ')',
         'border-width': '0 ' + borderWidth,
-        '--scale': parseFloat(height) / 0.9,
-        '--bw': borderWidth,
       }"
     ></div>
     <div class="pic9-content">
@@ -32,12 +30,12 @@ export default {
     },
     height: {
       type: String,
-      default: '0.8rem',
+      default: '0.9rem',
     },
   },
   computed: {
     borderWidth() {
-      let height = this.height || '1rem';
+      let height = this.height;
       let w = 0;
       w = parseFloat(height);
       if (height.endsWith('rem')) {

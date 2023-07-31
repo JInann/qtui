@@ -7,7 +7,7 @@
   <demo-block title="设置高度">
     <chat
       src="https://test-resources-ic.carryu.com.cn/ic/cloud/resources/982252f620631d2d372ad4d75545de1b.png"
-      height="1.4rem"
+      height="0.7rem"
     ></chat>
   </demo-block>
   <demo-block title="设置内容">
