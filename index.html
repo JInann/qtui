@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>qtui</title>
+    
+    <link rel="icon" type="image/png" href="https://fastly.jsdelivr.net/npm/@vant/assets/logo.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+    />
+    
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+      <script>
+    !(function (doc, win) {
+      var docEl = doc.documentElement;
+      var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+      var recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        var MAX_WIDTH = 750; // 设计稿宽度为750px，html设置字体大小100px，设计稿上30px相当于页面上0.3rem；
+        if (!clientWidth) {
+          return;
+        }
+        if (clientWidth >= MAX_WIDTH) {
+          docEl.style.fontSize = '100px';
+        } else {
+          docEl.style.fontSize = 100 * (clientWidth / MAX_WIDTH) + 'px';
+        }
+      };
+      recalc();
+      if (!doc.addEventListener) {
+        return;
+      }
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+  </script><style>body{font-size:16px;}</style>
+    
+    
+    <script type="module" crossorigin src="/qtui/assets/main-e4d2ad19.js"></script>
+    <link rel="modulepreload" crossorigin href="/qtui/assets/vue-libs-cc25d22f.js">
+    <link rel="modulepreload" crossorigin href="/qtui/assets/locales-b17de395.js">
+    <link rel="stylesheet" href="/qtui/assets/index-eb61d78d.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    
+  </body>
+</html>
