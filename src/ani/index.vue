@@ -1,14 +1,17 @@
+<template>
+  <div ref="el" class="svga ani" :class="{ stretch }"></div>
+</template>
 <script lang="ts">
 import SVGA from 'svgaplayerweb';
-import { onMounted, ref, watch, defineEmits } from 'vue';
-interface svgaProps {
+import { onMounted, ref, watch } from 'vue';
+export type svgaProps = {
   src: string;
   loops?: number;
   clearsAfterStop?: boolean;
   fillMode?: 'Forward' | 'Backward';
   autoplay?: boolean;
   stretch?: boolean;
-}
+};
 const animationStore: { [path: string]: Promise<SVGA.VideoEntity> } = {};
 export const load = (path: string) => {
   if (!animationStore[path]) {
@@ -52,13 +55,23 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-const props = withDefaults(defineProps<svgaProps>(), {
-  loops: 0,
-  clearsAfterStop: true,
-  autoplay: true,
-  fillMode: 'Forward',
-  stretch: false,
-});
+const props = withDefaults(
+  defineProps<{
+    src: string;
+    loops?: number;
+    clearsAfterStop?: boolean;
+    fillMode?: 'Forward' | 'Backward';
+    autoplay?: boolean;
+    stretch?: boolean;
+  }>(),
+  {
+    loops: 0,
+    clearsAfterStop: true,
+    autoplay: true,
+    fillMode: 'Forward',
+    stretch: false,
+  },
+);
 const emit = defineEmits(['init', 'Finished', 'Frame', 'Percentage']);
 const player = ref<SVGA.Player>(null as unknown as SVGA.Player);
 const el = ref<HTMLDivElement>();
@@ -79,9 +92,6 @@ defineExpose({
   player,
 });
 </script>
-<template>
-  <div ref="el" class="svga ani" :class="{ stretch }"></div>
-</template>
 <style lang="scss" scoped>
 .svga {
   overflow: hidden;
