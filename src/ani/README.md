@@ -24,7 +24,7 @@
 事件使用vue事件监听即可：
 
 ```html
-<ani @Finished="handleFn" />
+<ani @finished="handleFn" />
 ```
 
  支持的事件：
