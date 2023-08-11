@@ -40,13 +40,13 @@ function initAni(
     }
     cb('init');
     player.onFinished(() => {
-      cb('Finished');
+      cb('finished');
     });
     player.onFrame((frame) => {
-      cb('Frame', frame);
+      cb('frame', frame);
     });
     player.onPercentage((percentage) => {
-      cb('Percentage', percentage);
+      cb('percentage', percentage);
     });
   });
 }
@@ -72,7 +72,7 @@ const props = withDefaults(
     stretch: false,
   },
 );
-const emit = defineEmits(['init', 'Finished', 'Frame', 'Percentage']);
+const emit = defineEmits(['init', 'finished', 'frame', 'percentage']);
 const player = ref<SVGA.Player>(null as unknown as SVGA.Player);
 const el = ref<HTMLDivElement>();
 
