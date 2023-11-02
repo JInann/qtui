@@ -1,0 +1,1 @@
+import{o as e,a as s,d as t}from"./vue-libs-6742f699.js";const a={class:"van-doc-markdown-body"},n=t("h1",null,"介绍",-1),c=t("div",{class:"van-doc-card"},[t("h3",{id:"guan-yu",tabindex:"-1"},"关于"),t("p",null,"封装了常用的弹窗、动画、气泡(.9图)组件")],-1),d=[n,c],h={setup(r,{expose:o}){return o({frontmatter:{}}),(i,l)=>(e(),s("div",a,d))}};export{h as default};
