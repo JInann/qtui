@@ -49,5 +49,13 @@
   "browserslist": [
     "Chrome >= 51",
     "iOS >= 10"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JInann/qtui.git"
+  },
+  "homepage": "https://jinann.github.io/qtui/#/home",
+  "keywords": [
+    "qtui"
   ]
 }

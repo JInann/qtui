@@ -117,8 +117,8 @@ watch(
 );
 const cb_list: any[] = [];
 provide(getDegKey, (cb) => {
-  size.value++;
   cb_list.push(cb);
+  size.value++;
 });
 onMounted(() => {
   turntable.init();
@@ -143,7 +143,7 @@ defineExpose({
 </script>
 <script lang="ts">
 export const getDegKey = Symbol('getDeg') as InjectionKey<
-  (cb: (val) => void) => void
+  (cb: (val: any) => void) => void
 >;
 export default {
   name: 'Turntable',
