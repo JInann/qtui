@@ -1,5 +1,5 @@
 import { watch } from 'vue';
-
+console.info('@fkjs/qtui 文档地址:https://jinann.github.io/qtui/#/home');
 const u = navigator.userAgent;
 const Agents = [
   'Android',

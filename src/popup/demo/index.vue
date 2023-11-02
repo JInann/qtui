@@ -1,9 +1,9 @@
 <template>
   <demo-block title="基础用法">
-    <popup v-model="p1" type="primary">
+    <popup v-model="p1">
       <div class="my-popup-content">这是内容</div>
     </popup>
-    <popup v-model="p2" type="primary">
+    <popup v-model="p2">
       <div class="my-popup-content">这是内容2</div>
     </popup>
     <div @click="openClick">打开</div>

@@ -12,3 +12,10 @@ yarn add qtui
 # 通过 pnpm
 pnpm add qtui
 ```
+
+### 使用
+```javascript
+import qtui from '@fkjs/qtui';
+const app = createApp(App);
+app.use(qtui);
+```

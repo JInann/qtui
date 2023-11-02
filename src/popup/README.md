@@ -19,7 +19,7 @@ Vue.use(popup);
 
 ```html
   <template>
-    <popup v-model="p1" type="primary">
+    <popup v-model="p1">
       <div class="my-popup-content">
         这是内容
       </div>

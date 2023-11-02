@@ -43,6 +43,7 @@ const turntable_config = ref<any[]>(
     icon: 'https://h5.carryu.com.cn/wcfe__test/mass2/assets/b1-354ce1e4.png',
   })),
 );
+// 动态修改转盘内容
 setTimeout(() => {
   turntable_config.value = Array.from({ length: 5 }).map((v, i) => ({
     name: '下标' + i,
@@ -50,12 +51,16 @@ setTimeout(() => {
   }));
   turntableVm.value && turntableVm.value.updateSize();
 }, 5000);
+
 const turntableVm = ref<InstanceType<typeof turntable>>();
 const resultIdx = ref(0);
 function handleClick() {
   if (turntableVm.value) {
     resultIdx.value = ~~(Math.random() * turntable_config.value.length);
-    turntableVm.value.draw(resultIdx.value);
+    // 指定抽奖结果，并开始播放动画
+    turntableVm.value.draw(resultIdx.value).then(()=>{
+      // 动画结束
+    });
   }
 }
 </script>
@@ -93,21 +98,17 @@ function handleClick() {
 | during          | 动画播放时间 | _number_ | `1500` |
 | rotateWhenReady | 默认动画 | _bool_ | `false`     |
 
-### Events
 
-| 事件名 | 说明       | 回调参数            |
-| ------ | ---------- | ------------------- |
-| update:modelValue  | 弹窗状态改变时触发 | _event: MouseEvent_ |
 
 ### Methods
 
 | 方法名 | 说明       | 参数            |
 | ------ | ---------- | ------------------- |
-| draw  | 播放抽奖动画 | idx：_number_ 结束下标 |
+| draw  | 播放抽奖动画,返回Promise | idx：_number_ 结束下标 |
 | updateSize  | 奖励数量更新 |  |
 
 ### Slots
 
 | 名称    | 说明     |
 | ------- | -------- |
-| default | 默认插槽 |
+| default | 默认插槽,只允许传入turntableItem组件 |
