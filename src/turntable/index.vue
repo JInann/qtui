@@ -183,18 +183,6 @@ export default {
     transform: translate(-50%, -50%);
     width: 0;
     height: 0;
-    ::v-deep(.turntable-item) {
-      position: absolute;
-      width: 7.5rem;
-      left: -3.75rem;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      height: fit-content;
-      flex-direction: column;
-      transform-origin: bottom center;
-    }
   }
 }
 </style>
