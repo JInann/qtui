@@ -1,5 +1,10 @@
 <template>
-  <div ref="turntableEl" class="turntable" :class="turntable.elClass.value">
+  <div
+    ref="turntableEl"
+    class="turntable"
+    :class="turntable.elClass.value"
+    :style="{ '--drawing-function': drawingFunction }"
+  >
     <div class="turntable-ls">
       <slot v-if="showChild"></slot>
     </div>
@@ -24,11 +29,15 @@ const props = withDefaults(
     during?: number;
     rotateWhenReady?: boolean;
     offset?: number;
+    rotateCount?: number;
+    drawingFunction?: string;
   }>(),
   {
     offset: 0,
     during: 1500,
     rotateWhenReady: false,
+    rotateCount: 0,
+    drawingFunction: '',
   },
 );
 const duringStyleVal = computed(() => props.during / 1000 + 's');
@@ -82,7 +91,12 @@ const useTurntable = (
       running.value = true;
       fromDeg.value =
         (getDeg(window.getComputedStyle(options.el()).transform) % 360) + 'deg';
-      endDeg.value = 720 - (360 / size.value) * endIdx - props.offset + 'deg';
+      endDeg.value =
+        720 +
+        props.rotateCount * 360 -
+        (360 / size.value) * endIdx -
+        props.offset +
+        'deg';
       aniReady.value = false;
       aniActive.value = true;
       setTimeout(() => {
@@ -169,6 +183,7 @@ export default {
 .turntable-active {
   animation: turntable-rotate 1.5s ease-in-out 1 forwards;
   animation-duration: calc(var(--duringVal));
+  animation-timing-function: var(--drawing-function);
 }
 .turntable-ready {
   animation: turntable-readyrotate 32s linear infinite;

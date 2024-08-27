@@ -1,7 +1,13 @@
 <template>
   <demo-block title="基础用法">
     <div class="my-turntable">
-      <turntable ref="turntableVm" :during="3000" :rotate-when-ready="true">
+      <turntable
+        ref="turntableVm"
+        :during="4000"
+        :rotate-when-ready="false"
+        :rotate-count="3"
+        drawing-function="cubic-bezier(.78,.75,.39,.94)"
+      >
         <turntable-item v-for="(item, i) in turntable_config" :key="i" :idx="i">
           <div class="name">{{ item.name }}</div>
           <img :src="item.icon" alt="" class="icon" />

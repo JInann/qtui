@@ -7,11 +7,12 @@ turntable是一个转盘组件
 ### 引入
 
 ```js
-import Vue from 'vue';
-import { turntable,turntableItem } from 'qtui';
+import { createApp } from 'vue';
+import qtui from '@fkjs/qtui';
 
-Vue.use(turntable);
-Vue.use(turntableItem);
+const app = createApp(App);
+app.use(qtui);
+
 ```
 
 ## 代码演示
@@ -22,7 +23,13 @@ Vue.use(turntableItem);
 <template>
   <demo-block title="基础用法">
     <div class="my-turntable">
-      <turntable ref="turntableVm" :during="3000" :rotate-when-ready="true">
+      <turntable
+        ref="turntableVm"
+        :during="4000"
+        :rotate-when-ready="false"
+        :rotate-count="3"
+        drawing-function="cubic-bezier(.78,.75,.39,.94)"
+      >
         <turntable-item v-for="(item, i) in turntable_config" :key="i" :idx="i">
           <div class="name">{{ item.name }}</div>
           <img :src="item.icon" alt="" class="icon" />
@@ -37,13 +44,14 @@ Vue.use(turntableItem);
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import turntable from '../index.vue';
+import turntableItem from '../../turntable-item/index.vue';
 const turntable_config = ref<any[]>(
   Array.from({ length: 8 }).map((v, i) => ({
     name: '下标' + i,
     icon: 'https://h5.carryu.com.cn/wcfe__test/mass2/assets/b1-354ce1e4.png',
   })),
 );
-// 动态修改转盘内容
 setTimeout(() => {
   turntable_config.value = Array.from({ length: 5 }).map((v, i) => ({
     name: '下标' + i,
@@ -51,16 +59,12 @@ setTimeout(() => {
   }));
   turntableVm.value && turntableVm.value.updateSize();
 }, 5000);
-
 const turntableVm = ref<InstanceType<typeof turntable>>();
 const resultIdx = ref(0);
 function handleClick() {
   if (turntableVm.value) {
     resultIdx.value = ~~(Math.random() * turntable_config.value.length);
-    // 指定抽奖结果，并开始播放动画
-    turntableVm.value.draw(resultIdx.value).then(()=>{
-      // 动画结束
-    });
+    turntableVm.value.draw(resultIdx.value);
   }
 }
 </script>
@@ -86,6 +90,7 @@ function handleClick() {
 }
 </style>
 
+
 ```
 
 ## API
@@ -97,8 +102,10 @@ function handleClick() {
 | offset          | 偏移角度 | _number_ | `0` |
 | during          | 动画播放时间 | _number_ | `1500` |
 | rotateWhenReady | 默认动画 | _bool_ | `false`     |
+| rotate-count | 出结果前空转次数 | _number_ | `0`     |
+| drawing-function | 动画曲线 | _string_ | ``     |
 
-
+drawing-function 参考 https://cubic-bezier.com/#.78,.75,.39,.94
 
 ### Methods
 
