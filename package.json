@@ -1,6 +1,6 @@
 {
   "name": "@fkjs/qtui",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "main": "lib/qtui.js",
   "module": "es/index.js",
@@ -17,7 +17,7 @@
     "test": "vant-cli test",
     "build": "vant-cli build",
     "build:site": "vant-cli build-site",
-    "release": "vant-cli release --tag next",
+    "release": "node release.js",
     "release:site": "pnpm build:site && npx gh-pages -d site-dist",
     "test:watch": "vant-cli test --watch",
     "test:coverage": "open test/coverage/index.html"
