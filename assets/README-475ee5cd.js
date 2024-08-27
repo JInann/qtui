@@ -1,12 +1,19 @@
-import{o as a,a as n,z as t}from"./vue-libs-6742f699.js";const l={class:"van-doc-markdown-body"},p=t(`<h1>转盘</h1><div class="van-doc-card"><h3 id="jie-shao" tabindex="-1">介绍</h3><p>turntable是一个转盘组件</p></div><div class="van-doc-card"><h3 id="yin-ru" tabindex="-1">引入</h3><pre><code class="language-js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;vue&#39;</span>;
-<span class="hljs-keyword">import</span> { turntable,turntableItem } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;qtui&#39;</span>;
+import{o as a,a as n,z as t}from"./vue-libs-6742f699.js";const l={class:"van-doc-markdown-body"},p=t(`<h1>转盘</h1><div class="van-doc-card"><h3 id="jie-shao" tabindex="-1">介绍</h3><p>turntable是一个转盘组件</p></div><div class="van-doc-card"><h3 id="yin-ru" tabindex="-1">引入</h3><pre><code class="language-js"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;vue&#39;</span>;
+<span class="hljs-keyword">import</span> qtui <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;@fkjs/qtui&#39;</span>;
 
-<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(turntable);
-<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(turntableItem);
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>);
+app.<span class="hljs-title function_">use</span>(qtui);
+
 </code></pre></div><h2 id="dai-ma-yan-shi" tabindex="-1">代码演示</h2><div class="van-doc-card"><h3 id="ji-chu-yong-fa" tabindex="-1">基础用法</h3><pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">demo-block</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;基础用法&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-turntable&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">turntable</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;turntableVm&quot;</span> <span class="hljs-attr">:during</span>=<span class="hljs-string">&quot;3000&quot;</span> <span class="hljs-attr">:rotate-when-ready</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">turntable</span>
+        <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;turntableVm&quot;</span>
+        <span class="hljs-attr">:during</span>=<span class="hljs-string">&quot;4000&quot;</span>
+        <span class="hljs-attr">:rotate-when-ready</span>=<span class="hljs-string">&quot;false&quot;</span>
+        <span class="hljs-attr">:rotate-count</span>=<span class="hljs-string">&quot;3&quot;</span>
+        <span class="hljs-attr">drawing-function</span>=<span class="hljs-string">&quot;cubic-bezier(.78,.75,.39,.94)&quot;</span>
+      &gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">turntable-item</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, i) in turntable_config&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;i&quot;</span> <span class="hljs-attr">:idx</span>=<span class="hljs-string">&quot;i&quot;</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>{{ item.name }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.icon&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span> /&gt;</span>
@@ -21,13 +28,14 @@ import{o as a,a as n,z as t}from"./vue-libs-6742f699.js";const l={class:"van-doc
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
 <span class="hljs-keyword">import</span> { ref } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;vue&#39;</span>;
+<span class="hljs-keyword">import</span> turntable <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;../index.vue&#39;</span>;
+<span class="hljs-keyword">import</span> turntableItem <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;../../turntable-item/index.vue&#39;</span>;
 <span class="hljs-keyword">const</span> turntable_config = ref&lt;any[]&gt;(
   <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>({ <span class="hljs-attr">length</span>: <span class="hljs-number">8</span> }).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
     <span class="hljs-attr">name</span>: <span class="hljs-string">&#39;下标&#39;</span> + i,
     <span class="hljs-attr">icon</span>: <span class="hljs-string">&#39;https://h5.carryu.com.cn/wcfe__test/mass2/assets/b1-354ce1e4.png&#39;</span>,
   })),
 );
-<span class="hljs-comment">// 动态修改转盘内容</span>
 <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
   turntable_config.<span class="hljs-property">value</span> = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>({ <span class="hljs-attr">length</span>: <span class="hljs-number">5</span> }).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> ({
     <span class="hljs-attr">name</span>: <span class="hljs-string">&#39;下标&#39;</span> + i,
@@ -35,16 +43,12 @@ import{o as a,a as n,z as t}from"./vue-libs-6742f699.js";const l={class:"van-doc
   }));
   turntableVm.<span class="hljs-property">value</span> &amp;&amp; turntableVm.<span class="hljs-property">value</span>.<span class="hljs-title function_">updateSize</span>();
 }, <span class="hljs-number">5000</span>);
-
 <span class="hljs-keyword">const</span> turntableVm = ref&lt;<span class="hljs-title class_">InstanceType</span>&lt;<span class="hljs-keyword">typeof</span> turntable&gt;&gt;();
 <span class="hljs-keyword">const</span> resultIdx = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>);
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) {
   <span class="hljs-keyword">if</span> (turntableVm.<span class="hljs-property">value</span>) {
     resultIdx.<span class="hljs-property">value</span> = ~~(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * turntable_config.<span class="hljs-property">value</span>.<span class="hljs-property">length</span>);
-    <span class="hljs-comment">// 指定抽奖结果，并开始播放动画</span>
-    turntableVm.<span class="hljs-property">value</span>.<span class="hljs-title function_">draw</span>(resultIdx.<span class="hljs-property">value</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">()=&gt;</span>{
-      <span class="hljs-comment">// 动画结束</span>
-    });
+    turntableVm.<span class="hljs-property">value</span>.<span class="hljs-title function_">draw</span>(resultIdx.<span class="hljs-property">value</span>);
   }
 }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -70,4 +74,5 @@ import{o as a,a as n,z as t}from"./vue-libs-6742f699.js";const l={class:"van-doc
 }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
-</code></pre></div><h2 id="api" tabindex="-1">API</h2><div class="van-doc-card"><h3 id="props" tabindex="-1">Props</h3><table><thead><tr><th>参数</th><th>说明</th><th>类型</th><th>默认值</th></tr></thead><tbody><tr><td>offset</td><td>偏移角度</td><td><em>number</em></td><td><code>0</code></td></tr><tr><td>during</td><td>动画播放时间</td><td><em>number</em></td><td><code>1500</code></td></tr><tr><td>rotateWhenReady</td><td>默认动画</td><td><em>bool</em></td><td><code>false</code></td></tr></tbody></table></div><div class="van-doc-card"><h3 id="methods" tabindex="-1">Methods</h3><table><thead><tr><th>方法名</th><th>说明</th><th>参数</th></tr></thead><tbody><tr><td>draw</td><td>播放抽奖动画,返回Promise</td><td>idx：<em>number</em> 结束下标</td></tr><tr><td>updateSize</td><td>奖励数量更新</td><td></td></tr></tbody></table></div><div class="van-doc-card"><h3 id="slots" tabindex="-1">Slots</h3><table><thead><tr><th>名称</th><th>说明</th></tr></thead><tbody><tr><td>default</td><td>默认插槽,只允许传入turntableItem组件</td></tr></tbody></table></div>`,9),e=[p],j={setup(c,{expose:s}){return s({frontmatter:{}}),(h,i)=>(a(),n("div",l,e))}};export{j as default};
+
+</code></pre></div><h2 id="api" tabindex="-1">API</h2><div class="van-doc-card"><h3 id="props" tabindex="-1">Props</h3><table><thead><tr><th>参数</th><th>说明</th><th>类型</th><th>默认值</th></tr></thead><tbody><tr><td>offset</td><td>偏移角度</td><td><em>number</em></td><td><code>0</code></td></tr><tr><td>during</td><td>动画播放时间</td><td><em>number</em></td><td><code>1500</code></td></tr><tr><td>rotateWhenReady</td><td>默认动画</td><td><em>bool</em></td><td><code>false</code></td></tr><tr><td>rotate-count</td><td>出结果前空转次数</td><td><em>number</em></td><td><code>0</code></td></tr><tr><td>drawing-function</td><td>动画曲线</td><td><em>string</em></td><td>\`\`</td></tr></tbody></table><p>drawing-function 参考 <a href="https://cubic-bezier.com/#.78,.75,.39,.94" target="_blank">https://cubic-bezier.com/#.78,.75,.39,.94</a></p></div><div class="van-doc-card"><h3 id="methods" tabindex="-1">Methods</h3><table><thead><tr><th>方法名</th><th>说明</th><th>参数</th></tr></thead><tbody><tr><td>draw</td><td>播放抽奖动画,返回Promise</td><td>idx：<em>number</em> 结束下标</td></tr><tr><td>updateSize</td><td>奖励数量更新</td><td></td></tr></tbody></table></div><div class="van-doc-card"><h3 id="slots" tabindex="-1">Slots</h3><table><thead><tr><th>名称</th><th>说明</th></tr></thead><tbody><tr><td>default</td><td>默认插槽,只允许传入turntableItem组件</td></tr></tbody></table></div>`,9),e=[p],d={setup(c,{expose:s}){return s({frontmatter:{}}),(h,i)=>(a(),n("div",l,e))}};export{d as default};
